@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- section here -->
+<!-- Trainer -->
+<a href="{% url 'trainer-add' %}" class="btn btn-outline-primary">Add New Trainer</a><br>
+<section class="trainers-container">
+      <table class="styled-table">
+        <tbody>
+          <tr>
+            <th>Trainer Name</th>
+            <th>Birthdate</th>
+            <th>Location</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+
+          <!--ASH-->
+            {% for trainer in trainer_list %}
+            <tr>
+                <td>{{ trainer.name }}</td>
+                <td>{{ trainer.birthdate }}</td>
+                <td>{{ trainer.location }}</td>
+                <td>{{ trainer.email }}</td>
+                <td>
+                    <a href="{{ trainer.id }}">Edit</a>
+                    <a href="{{ trainer.id }}/delete">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+      </table>
+    </section>
+{% include 'pagination.html' %}
+{% endblock %}

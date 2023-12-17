@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<a href="{% url 'collection-add' %}" class="btn btn-outline-primary">Add New Collection</a><br>
+<!-- section here -->
+    <section class="collection-container">
+      <table class="styled-table">
+        <tbody>
+          <tr>
+              <th>Trainer</th>
+              <th>Card</th>
+              <th>Collection Date</th>
+          </tr>
+
+          {% for collection in collection_list %}
+            <tr>
+                <td>{{ collection.trainer }}</td>
+                <td>{{ collection.card }}</td>
+                <td>{{ collection.collection_date }}</td>
+                <td>
+                    <a href="{{ collection.id }}">Edit</a>
+                    <a href="{{ collection.id }}/delete">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+      </table>
+    </section>
+{% include 'pagination.html' %}
+{% endblock %}
+
+{% include 'includes/footer.html' %}
